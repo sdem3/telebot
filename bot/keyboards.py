@@ -3,80 +3,33 @@ from aiogram.types import ReplyKeyboardRemove, ReplyKeyboardMarkup,\
     InlineKeyboardButton
 
 
-start_choice = ReplyKeyboardMarkup()
+start_choice = ReplyKeyboardMarkup(resize_keyboard= True, one_time_keyboard=True)
 
-button_help = KeyboardButton('help', callback_data='help')
+button_help = KeyboardButton('Помощь', callback_data='help')
 
-button_choice_museum = KeyboardButton('choice museum', callback_data='museums')
+button_choice_museum = KeyboardButton('Выбрать музей', callback_data='museums')
 
 start_choice.add(button_help).add(button_choice_museum)
 
+get_result_keyboard = InlineKeyboardMarkup(one_time_keyboard=True).add(
+                  InlineKeyboardButton('галерея искусства стран европы и америки 19-20 веков', callback_data='res4', resize_button = True)).add(
+                  InlineKeyboardButton('галерея глазунова', callback_data='res1')).add(
+                  InlineKeyboardButton('галерея шилова', callback_data='res2')).add(
+                  InlineKeyboardButton('дом-музей булгакова', callback_data='res3')).add(
+                  InlineKeyboardButton('пушкинская галерея', callback_data='res5'))
 
 
-button_museums = [InlineKeyboardButton('tretyakovka', callback_data='tretyakovka_1_qst__'),
-                  InlineKeyboardButton('2', callback_data='2'),
-                  InlineKeyboardButton('3', callback_data='3'),
-                  InlineKeyboardButton('4', callback_data='4'),
-                  InlineKeyboardButton('5', callback_data='5')]
+button_museums = [InlineKeyboardButton('галерея стран европы и америки', callback_data='mus4_1_qst__'),
+                  InlineKeyboardButton('галерея глазунова', callback_data='mus1_1_qst__'),
+                  InlineKeyboardButton('галерея шилова', callback_data='mus2_1_qst__'),
+                  InlineKeyboardButton('дом-музей булгакова', callback_data='mus3_1_qst__'),
+                  InlineKeyboardButton('пушкинская галерея', callback_data='mus5_1_qst__')]
 
-
-choice_museum = InlineKeyboardMarkup()
+choice_museum = InlineKeyboardMarkup(one_time_keyboard=True)
 for button in button_museums:
     choice_museum.add(button)
 
 
-choice_tretyakovka_1 = InlineKeyboardMarkup().add(
-    InlineKeyboardButton('да', callback_data='tretyakovka_1_ans_1'),
-    InlineKeyboardButton('нет', callback_data='tretyakovka_1_ans_0'))
-
-right_ans_tretyakovka_1 = InlineKeyboardMarkup().add(
-    InlineKeyboardButton('cледующий вопрос', callback_data = 'tretyakovka_2_qst__'),
-)
-
-choice_tretyakovka_2 = InlineKeyboardMarkup().add(
-    InlineKeyboardButton('да', callback_data='tretyakovka_2_ans_1'),
-    InlineKeyboardButton('нет', callback_data='tretyakovka_2_ans_0'))
-
-right_ans_tretyakovka_2 = InlineKeyboardMarkup().add(
-    InlineKeyboardButton('cледующий вопрос', callback_data = 'tretyakovka_3_qst__'),
-)
-
-choice_tretyakovka_3 = InlineKeyboardMarkup().add(
-    InlineKeyboardButton('да', callback_data='tretyakovka_3_ans_1'),
-    InlineKeyboardButton('нет', callback_data='tretyakovka_3_ans_0') )
-right_ans_tretyakovka_3 = InlineKeyboardMarkup().add(
-    InlineKeyboardButton('cледующий вопрос', callback_data = 'next_3'),
-)
-class Answer:
-    def __init__(self, text, ans, right_ans, keyboard):
-        self.text = text
-        self.ans = ans
-        self.right_ans = right_ans
-        self.keyboard = keyboard
-
-
-right_ans_tretyakovka_dict = {'tretyakovka_1_ans_1': Answer('this picture...', 1, 0, right_ans_tretyakovka_1),
-                              'tretyakovka_2_ans_1': Answer('blabla', 1, 0, right_ans_tretyakovka_2),
-                              'tretyakovka_3_ans_1': Answer('rrrrr', 1, 1, right_ans_tretyakovka_3),
-                              'tretyakovka_1_ans_0': Answer('this picture...', 0, 0, right_ans_tretyakovka_1),
-                              'tretyakovka_2_ans_0': Answer('blabla', 0, 0, right_ans_tretyakovka_2),
-                              'tretyakovka_3_ans_0': Answer('rrrr', 0, 1, right_ans_tretyakovka_3)
-                              }
-
-
-class Question:
-    def __init__(self, text, keyboard):
-        self.text = text
-
-        self.keyboard = keyboard
-
-
-
-question_tretyakovka_dict = {
-    'tretyakovka_1_qst__' : Question('question1',  choice_tretyakovka_1),
-    'tretyakovka_2_qst__' : Question('question2',  choice_tretyakovka_2),
-    'tretyakovka_3_qst__' : Question('question3',  choice_tretyakovka_3),
-}
 
 moderator_start_keyboard = InlineKeyboardMarkup()
 moderator_start_buttons = [
@@ -85,3 +38,4 @@ moderator_start_buttons = [
                             InlineKeyboardButton('quest 3', callback_data= 'quest_3')
 ]
 moderator_start_keyboard.add(moderator_start_buttons)
+

@@ -1,2 +1,2 @@
-s = 'tretyakovka_2_qst__'
-print(s[14:17])
+s = 'mus1_1_ans_1'
+print(s[0:4])
